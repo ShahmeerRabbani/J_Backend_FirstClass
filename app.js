@@ -6,10 +6,19 @@ import PostModel from './models/PostSchema.js';
 import UserModel from './models/UserSchema.js';
 import bcrypt from 'bcryptjs';
 import cors from 'cors';
+import dotenv from 'dotenv';
+import jwt from 'jsonwebtoken';
+import UserVerifyMiddle from './MiddleWare/UserVerify.js';
 
+
+
+dotenv.config(); 
 const app = express();
 //PORT
-const PORT = 1900;
+const port = process.env.PORT;
+
+// Real link
+const DBURI = process.env.MONGODB_URI; 
 
 // Middleware
 app.use(express.json());
@@ -17,11 +26,9 @@ app.use(express.urlencoded({extended: true}));
 app.use(cors())
 
 // Fake Link
-// const DBURI = 'mongodb+srv://john:Johnwick@cluster0.tvanh.mongodb.net/'
+// const DBURI = 'mongodb+srv://topag44302:admin@cluster0.5zr0d.mongodb.net/'
 
 
-// Real link
-const DBURI = 'mongodb+srv://**********:***********@cluster0.iz89k.mongodb.net/'; 
 
 mongoose.connect(DBURI);
 
@@ -29,7 +36,7 @@ mongoose.connection.on('connected', (res) => console.log('Mongodb Connected'))
 mongoose.connection.on('error', (err) => console.log('error', err))
 
 
-app.listen(PORT, ()=>{
+app.listen(port, ()=>{
     console.log('server is running')
 });
 
@@ -78,7 +85,7 @@ app.post('/SignUp', async(req, res) => {
 
 // get signup Data
 
-app.get('/getSign', async (req, res) => {
+app.get('/getSign', UserVerifyMiddle ,async (req, res) => {
     const getData = await UserModel.find({})
 
     res.json({
@@ -124,9 +131,12 @@ app.post('/login', async(req, res)=>{
       return;
   }
 
+  var token = jwt.sign({ email: emailExist.email, Password: emailExist.password }, process.env.JWT_SECRET_KEY);
+
   res.json({
     message: 'User Login successfully',
-    status: true
+    status: true,
+    response: token
 })
 })
 
