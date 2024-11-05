@@ -7,8 +7,8 @@ import UserModel from './models/UserSchema.js';
 import bcrypt from 'bcryptjs';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import jwt from 'jsonwebtoken';
-import UserVerifyMiddle from './MiddleWare/UserVerify.js';
+// import jwt from 'jsonwebtoken';
+// import UserVerifyMiddle from './MiddleWare/UserVerify.js';
 
 
 
@@ -85,7 +85,7 @@ app.post('/SignUp', async(req, res) => {
 
 // get signup Data
 
-app.get('/getSign', UserVerifyMiddle ,async (req, res) => {
+app.get('/getSign' ,async (req, res) => {
     const getData = await UserModel.find({})
 
     res.json({
@@ -131,12 +131,12 @@ app.post('/login', async(req, res)=>{
       return;
   }
 
-  var token = jwt.sign({ email: emailExist.email, Password: emailExist.password }, process.env.JWT_SECRET_KEY);
+//   var token = jwt.sign({ email: emailExist.email, Password: emailExist.password }, process.env.JWT_SECRET_KEY);
 
   res.json({
     message: 'User Login successfully',
     status: true,
-    response: token
+    // response: token
 })
 })
 
