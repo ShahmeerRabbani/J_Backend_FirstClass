@@ -7,8 +7,8 @@ import UserModel from './models/UserSchema.js';
 import bcrypt from 'bcryptjs';
 import cors from 'cors';
 import dotenv from 'dotenv';
-// import jwt from 'jsonwebtoken';
-// import UserVerifyMiddle from './MiddleWare/UserVerify.js';
+import jwt from 'jsonwebtoken';
+import UserVerifyMiddle from './MiddleWare/UserVerify.js';
 
 
 
@@ -49,7 +49,7 @@ app.get('/', (request, response)=>{
 // Api and Data base for SignUp
 
 
-app.post('/SignUp', async(req, res) => {
+app.post('/signup', async(req, res) => {
     const { firstName, lastName,  email, password } = req.body;
 
     if(!firstName || !lastName || !email || !password){
@@ -85,7 +85,7 @@ app.post('/SignUp', async(req, res) => {
 
 // get signup Data
 
-app.get('/getSign' ,async (req, res) => {
+app.get('/getsign', UserVerifyMiddle ,async (req, res) => {
     const getData = await UserModel.find({})
 
     res.json({
@@ -131,12 +131,12 @@ app.post('/login', async(req, res)=>{
       return;
   }
 
-//   var token = jwt.sign({ email: emailExist.email, Password: emailExist.password }, process.env.JWT_SECRET_KEY);
+  var token = jwt.sign({ email: emailExist.email, Password: emailExist.password }, process.env.JWT_SECRET_KEY);
 
   res.json({
     message: 'User Login successfully',
     status: true,
-    // response: token
+    response: token
 })
 })
 
@@ -210,35 +210,6 @@ app.get('/getPost', async(req, res) => {
 
 // Api for practice
 
-
-// app.get('/food', (request, response) => {
-//     response.json([{
-//         id: 1,
-//         name: 'Pizza',
-//         price: 10.99,
-//         desc: 'Very good test'
-//     },
-//     {
-//         id: 2,
-//         name: 'Burger',
-//         price: 7.99,
-//         desc: 'Really Good test'
-//     },
-//     {
-//         id: 3,
-//         name: 'Tacos',
-//         price: 14.99,
-//         desc: 'Very like test'
-//     },]
-
-// )
-// })
-
 app.get('/Comments', (request, response) =>{
     response.send(Comments)
 })
-
-// app.get('/products', (request, response) => {
-//     response.send(data)
-// })
-
