@@ -49,7 +49,7 @@ app.get('/', (request, response)=>{
 // Api and Data base for SignUp
 
 
-app.post('/signup', async(req, res) => {
+app.post('/api/signup', async(req, res) => {
     const { firstName, lastName,  email, password } = req.body;
 
     if(!firstName || !lastName || !email || !password){
