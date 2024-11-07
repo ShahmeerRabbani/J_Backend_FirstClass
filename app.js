@@ -49,7 +49,7 @@ app.get('/', (request, response)=>{
 // Api and Data base for SignUp
 
 
-app.post('/api/signup', async(req, res) => {
+app.post('/api/signup',statuscode(200),async(req, res) => {
     const { firstName, lastName,  email, password } = req.body;
 
     if(!firstName || !lastName || !email || !password){
@@ -100,7 +100,7 @@ app.get('/getsign', UserVerifyMiddle ,async (req, res) => {
 
 // Api for Login to Database
 
-app.post('/login', async(req, res)=>{
+app.post('/login', statuscode(200) ,async(req, res)=>{
     const { email, password } = req.body;
     
     if(!email || !password){
