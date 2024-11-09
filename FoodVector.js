@@ -17,7 +17,7 @@ const FoodVector = [
     {
         id: 4,
         name: "Fries",
-        img: 'https://img.pikbest.com/element_our/20230513/bg/96a0ae84817b8.png!sw800'
+        img: 'https://img.pikbest.com/element_our/20230513/bg/96a0ae84817b8.png'
     },
     {
         id: 5,
