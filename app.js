@@ -1,6 +1,6 @@
 import express, { response } from 'express'
 import { data } from './data.js'
-import { Comments }  from './comments.js'
+import Foods from './foods.js'
 import mongoose from 'mongoose';
 import PostModel from './models/PostSchema.js';
 import UserModel from './models/UserSchema.js';
@@ -210,6 +210,6 @@ app.get('/getPost', async(req, res) => {
 
 // Api for practice
 
-app.get('/Comments', (request, response) =>{
-    response.send(Comments)
+app.get('/foods', (request, response) =>{
+    response.send(Foods)
 })
