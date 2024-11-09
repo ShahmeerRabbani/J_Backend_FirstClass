@@ -1,6 +1,7 @@
 import express, { response } from 'express'
 import { data } from './data.js'
 import Foods from './foods.js'
+import FoodVector from './FoodVector.js'
 import mongoose from 'mongoose';
 import PostModel from './models/PostSchema.js';
 import UserModel from './models/UserSchema.js';
@@ -212,4 +213,7 @@ app.get('/getPost', async(req, res) => {
 
 app.get('/foods', (request, response) =>{
     response.send(Foods)
+})
+app.get('/FoodVector', (request, response) =>{
+    response.send(FoodVector)
 })
