@@ -1,5 +1,5 @@
  const Foods = [
-  [
+  
     {
     id: 1,
     title: "Biryani",
@@ -71,7 +71,7 @@
     img: "https://w7.pngwing.com/pngs/941/256/png-transparent-round-pepperoni-sausage-a-ham-food-nutrition-cuisine-thumbnail.png",
     desc: "Pepperoni is a variety of spicy salami made from cured pork and beef seasoned with paprika and chili peppers. Prior to cooking, pepperoni is characteristically soft, slightly smoky, and bright red. Sliced pepperoni is one of the most popular pizza toppings in American pizzerias",
   },
-]
+
 ];
 
 export default Foods;
